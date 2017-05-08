@@ -1,0 +1,30 @@
+
+#ifndef PAINTER_2D_COMMON_H
+#define PAINTER_2D_COMMON_H
+
+///////////////////////////////////////////////////////////////////////////////
+
+#include <stdint.h>
+
+///////////////////////////////////////////////////////////////////////////////
+
+typedef struct {
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+	uint8_t a;
+} Color;
+
+typedef struct {
+	// Upper-left corner is (0, 0).
+	uint16_t x;
+	uint16_t y;
+	uint16_t w;
+	uint16_t h;
+	Color c;
+} Rect;
+
+///////////////////////////////////////////////////////////////////////////////
+
+#endif // PAINTER_2D_COMMON_H
+

@@ -39,8 +39,8 @@ def configure(conf):
 
 def build(bld):
 	bld.program(
-		source = ['ppm.c', 'basic.c'],
-		target = 'basic'
+		source = ['ppm.c', 'painter_2d.c', 'main.c'],
+		target = 'algo'
 	)
 
 ###############################################################################
