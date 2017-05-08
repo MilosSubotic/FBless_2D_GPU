@@ -8,6 +8,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
+void clean();
+
 void paint_rect(
 	uint16_t x,
 	uint16_t y,
@@ -17,6 +19,7 @@ void paint_rect(
 	uint8_t g,
 	uint8_t b
 );
+
 void paint_rect_transp(
 	uint16_t x,
 	uint16_t y,

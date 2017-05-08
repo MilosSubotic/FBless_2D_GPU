@@ -28,6 +28,8 @@ def options(opt):
 		help = 'enable compiler debug information'
 	)
 
+	opt.recurse('painter_2d')
+
 
 def configure(conf):
 	conf.load('compiler_c')
@@ -37,11 +39,17 @@ def configure(conf):
 	if conf.options.debug:
 		conf.env.CFLAGS.append('-g')
 
+	conf.recurse('painter_2d')
+
+
 def build(bld):
 	bld.program(
-		source = ['ppm.c', 'painter_2d.c', 'main.c'],
+		source = ['main.c'],
+		use = 'painter_2d',
 		target = 'algo'
 	)
+
+	bld.recurse('painter_2d')
 
 ###############################################################################
 
