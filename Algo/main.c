@@ -9,7 +9,9 @@
 
 
 int main() {
-	
+	clrear();
+
+	paint_rect(0, 0, 500, 400, 255, 0, 0);
 
 	flush(0); // Basic.
 
