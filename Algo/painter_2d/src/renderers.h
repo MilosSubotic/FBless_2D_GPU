@@ -10,7 +10,7 @@
 
 #define RECT_LIST_LEN 256
 extern Rect rect_list[];
-extern unsigned rect_list_cur;
+extern unsigned rect_list_end;
 
 ///////////////////////////////////////////////////////////////////////////////
 

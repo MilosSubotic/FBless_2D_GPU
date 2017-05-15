@@ -7,12 +7,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 Rect rect_list[RECT_LIST_LEN];
-unsigned rect_list_cur = 0;
+unsigned rect_list_end = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 
 void clear() {
-	rect_list_cur = 0;
+	rect_list_end = 0;
 }
 
 void paint_rect(
@@ -37,15 +37,20 @@ void paint_rect_transp(
 	uint8_t b,
 	uint8_t a
 ) {
-	rect_list[rect_list_cur].x = x;
-	rect_list[rect_list_cur].y = y;
-	rect_list[rect_list_cur].w = w;
-	rect_list[rect_list_cur].h = h;
-	rect_list[rect_list_cur].c.r = r;
-	rect_list[rect_list_cur].c.g = g;
-	rect_list[rect_list_cur].c.b = b;
-	rect_list[rect_list_cur].c.a = a;
-	rect_list_cur++;
+	if(rect_list_end == RECT_LIST_LEN){
+		// No more space.
+		return;
+	}
+
+	rect_list[rect_list_end].x = x;
+	rect_list[rect_list_end].y = y;
+	rect_list[rect_list_end].w = w;
+	rect_list[rect_list_end].h = h;
+	rect_list[rect_list_end].c.r = r;
+	rect_list[rect_list_end].c.g = g;
+	rect_list[rect_list_end].c.b = b;
+	rect_list[rect_list_end].c.a = a;
+	rect_list_end++;
 }
 
 void flush(int renderer) {

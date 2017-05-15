@@ -9,9 +9,13 @@
 
 
 int main() {
-	clrear();
+	clear();
 
-	paint_rect(0, 0, 500, 400, 255, 0, 0);
+	paint_rect_transp(0, 0, 500, 400, 255, 0, 0, 255);
+	paint_rect(100, 100, 150, 200, 255, 128, 128);
+	paint_rect(300, 100, 150, 200, 255, 128, 128);
+	paint_rect_transp(350, 150, 300, 300, 0, 0, 255, 128);
+	paint_rect(400, 200, 200, 200, 128, 128, 255);
 
 	flush(0); // Basic.
 
