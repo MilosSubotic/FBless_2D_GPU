@@ -84,6 +84,8 @@ void flush() {
 	if(_renderer == 0){
 		basic_renderer();
 	}else if(_renderer == 1){
+		reverse_renderer();
+	}else if(_renderer == 2){
 		tile_renderer();
 	}
 }

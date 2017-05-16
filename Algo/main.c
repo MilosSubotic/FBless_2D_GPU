@@ -9,7 +9,7 @@
 
 
 int main() {
-	init_renderer(0); // Basic.
+	init_renderer(1); // Basic.
 	
 	clear();
 
