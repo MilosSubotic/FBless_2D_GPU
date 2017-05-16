@@ -8,12 +8,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void tile_renderer() {
+void tile_renderer() {/*
 	// Partitioning.
 	for(int i = 0; i < rect_list_end; i++){
 		Rect r = rect_list[i];
 		
-		tile_mat
 	}
 
 
@@ -48,8 +47,7 @@ void tile_renderer() {
 
 	save_ppm("basic.ppm", vga, WIDTH, HEIGHT);
 
-	free(vga);
+	free(vga);*/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-

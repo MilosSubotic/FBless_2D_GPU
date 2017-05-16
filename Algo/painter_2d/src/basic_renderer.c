@@ -8,15 +8,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void basic_rederer() {
+void basic_renderer() {
 	uint8_t* vga = malloc(WIDTH*HEIGHT*3);
 
 	for(int y = 0; y < HEIGHT; y++){
 		for(int x = 0; x < WIDTH; x++){
 			int idx = (y*WIDTH+x)*3;
-			Color c = {0, 0, 0, 0};
-			for(int i = 0; i < rect_list_end; i++){
-				Rect r = rect_list[i];
+			Color c_acc = {0, 0, 0, 0};
+			for(int i = 0; i < _draw_list->list_end; i++){
+				Rect r = _draw_list->rects[i];
 				if(
 					r.x <= x &&
 					x < r.x+r.w &&
@@ -24,16 +24,19 @@ void basic_rederer() {
 					y < r.y+r.h
 				){
 					// Have rect over that pixel.
-					float new = (float)r.c.a/255;
+					Color c = _draw_list->colors[i];
+					float new = (float)c.a/255;
 					float old = 1-new;
-					c.r = c.r*old + r.c.r*new;
-					c.g = c.g*old + r.c.g*new;
-					c.b = c.b*old + r.c.b*new;
+					c_acc.r = c_acc.r*old + c.r*new;
+					c_acc.g = c_acc.g*old + c.g*new;
+					c_acc.b = c_acc.b*old + c.b*new;
+					
+					//TODO Fix-point.
 				}
 			}
-			vga[idx + 0] = c.r;
-			vga[idx + 1] = c.g;
-			vga[idx + 2] = c.b;
+			vga[idx + 0] = c_acc.r;
+			vga[idx + 1] = c_acc.g;
+			vga[idx + 2] = c_acc.b;
 		}
 	}
 
@@ -43,4 +46,3 @@ void basic_rederer() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-

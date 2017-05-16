@@ -5,14 +5,40 @@
 #include "renderers.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+// Pointers to SW/HW data structures.
 
-Rect rect_list[RECT_LIST_LEN];
-uint8_t rect_list_end = 0;
+DrawList* _draw_list = 0;
+
+///////////////////////////////////////////////////////////////////////////////
+// SW data structures.
+
+#if SW_EN
+static DrawList _sw_draw_list;
+#endif
+
+///////////////////////////////////////////////////////////////////////////////
+// Other data.
+
+static int _renderer;
 
 ///////////////////////////////////////////////////////////////////////////////
 
+void init_renderer(int renderer) {
+	_renderer = renderer;
+	if(renderer <= 1){
+#if SW_EN
+		_draw_list = &_sw_draw_list;
+#endif
+	}else{
+#if HW_EN
+		_draw_list = 0; //TODO From xparameters.h, don't use volatile.
+#endif
+	}
+	_draw_list->list_end = 0;
+}
+
 void clear() {
-	rect_list_end = 0;
+	_draw_list->list_end = 0;
 }
 
 void paint_rect(
@@ -37,29 +63,29 @@ void paint_rect_transp(
 	uint8_t b,
 	uint8_t a
 ) {
-	if(rect_list_end == RECT_LIST_LEN){
+	int e = _draw_list->list_end;
+	if(e == DRAW_LIST_LEN){
 		// No more space.
 		return;
 	}
 
-	rect_list[rect_list_end].x = x;
-	rect_list[rect_list_end].y = y;
-	rect_list[rect_list_end].w = w;
-	rect_list[rect_list_end].h = h;
-	rect_list[rect_list_end].c.r = r;
-	rect_list[rect_list_end].c.g = g;
-	rect_list[rect_list_end].c.b = b;
-	rect_list[rect_list_end].c.a = a;
-	rect_list_end++;
+	_draw_list->rects[e].x = x;
+	_draw_list->rects[e].y = y;
+	_draw_list->rects[e].w = w;
+	_draw_list->rects[e].h = h;
+	_draw_list->colors[e].r = r;
+	_draw_list->colors[e].g = g;
+	_draw_list->colors[e].b = b;
+	_draw_list->colors[e].a = a;
+	_draw_list->list_end++;
 }
 
-void flush(int renderer) {
-	if(renderer == 0){
-		basic_renderer();		
-	}else if(renderer == 1){
-		tile_renderer();		
+void flush() {
+	if(_renderer == 0){
+		basic_renderer();
+	}else if(_renderer == 1){
+		tile_renderer();
 	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-
