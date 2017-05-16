@@ -10,7 +10,7 @@
 
 #define RECT_LIST_LEN 256
 extern Rect rect_list[];
-extern unsigned rect_list_end;
+extern uint8_t rect_list_end;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -19,7 +19,22 @@ extern unsigned rect_list_end;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void basic_rederer();
+#define TILE_BITS 5
+#define TILE_LIST_LEN 4
+
+#define TILE_MAT_WIDTH (WIDTH >> TILE_BITS)
+#define TILE_MAT_HEIGHT (HEIGHT >> TILE_BITS)
+
+typedef struct {
+	uint8_t end;
+	uint8_t list[TILE_LIST_LEN];
+} TileList;
+extern short tile_mat[TILE_MAT_WIDTH][TILE_MAT_HEIGHT];
+
+///////////////////////////////////////////////////////////////////////////////
+
+void basic_renderer();
+void tile_renderer();
 
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -7,7 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 Rect rect_list[RECT_LIST_LEN];
-unsigned rect_list_end = 0;
+uint8_t rect_list_end = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -55,7 +55,9 @@ void paint_rect_transp(
 
 void flush(int renderer) {
 	if(renderer == 0){
-		basic_rederer();		
+		basic_renderer();		
+	}else if(renderer == 1){
+		tile_renderer();		
 	}
 }
 
