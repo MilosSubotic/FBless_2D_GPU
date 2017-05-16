@@ -9,6 +9,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 void tile_renderer() {
+	// TODO Move to separate file.
 	// Partitioning.
 	for(u16 ty = 0; ty < TILE_MAT_HEIGHT; ty++){
 		for(u16 tx = 0; tx < TILE_MAT_WIDTH; tx++){
