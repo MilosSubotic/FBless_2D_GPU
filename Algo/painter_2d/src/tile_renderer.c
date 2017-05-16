@@ -17,7 +17,7 @@ void tile_renderer() {/*
 
 
 
-	uint8_t* vga = malloc(WIDTH*HEIGHT*3);
+	u8* vga = malloc(WIDTH*HEIGHT*3);
 
 	for(int y = 0; y < HEIGHT; y++){
 		for(int x = 0; x < WIDTH; x++){

@@ -6,6 +6,11 @@
 
 #include <stdint.h>
 
+typedef unsigned int uint;
+typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
+
 ///////////////////////////////////////////////////////////////////////////////
 
 #define SW_EN 1
@@ -14,25 +19,25 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 typedef struct {
-	uint8_t r;
-	uint8_t g;
-	uint8_t b;
-	uint8_t a;
+	u8 r;
+	u8 g;
+	u8 b;
+	u8 a;
 } Color;
 
 typedef struct {
 	// Upper-left corner is (0, 0).
-	uint16_t x;
-	uint16_t y;
-	uint16_t w;
-	uint16_t h;
+	u16 x;
+	u16 y;
+	u16 w;
+	u16 h;
 } Rect;
 
 #define DRAW_LIST_LEN 256
 typedef struct {
 	Rect rects[DRAW_LIST_LEN];
 	Color colors[DRAW_LIST_LEN];
-	uint16_t list_end;
+	u16 list_end;
 } DrawList;
 
 extern DrawList* _draw_list;
@@ -52,8 +57,8 @@ extern DrawList* _draw_list;
 #define TILE_MAT_HEIGHT (HEIGHT >> TILE_BITS)
 
 typedef struct {
-	uint8_t end;
-	uint8_t list[TILE_LIST_LEN];
+	u8 end;
+	u8 list[TILE_LIST_LEN];
 } TileList;
 extern short tile_mat[TILE_MAT_WIDTH][TILE_MAT_HEIGHT];
 
