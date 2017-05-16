@@ -10,6 +10,9 @@ typedef unsigned int uint;
 typedef uint8_t u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
+typedef int8_t i8;
+typedef int16_t i16;
+typedef int32_t i32;
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -33,7 +36,7 @@ typedef struct {
 	u16 h;
 } Rect;
 
-#define DRAW_LIST_LEN 256
+#define DRAW_LIST_LEN 512
 typedef struct {
 	Rect rects[DRAW_LIST_LEN];
 	Color colors[DRAW_LIST_LEN];
@@ -49,18 +52,20 @@ extern DrawList* _draw_list;
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//#define TILE_BITS 5
-#define TILE_BITS 3
-#define TILE_LIST_LEN 4
+#define TILE_BITS 5
+#define TILE_LIST_LEN 7
 
 #define TILE_MAT_WIDTH (WIDTH >> TILE_BITS)
 #define TILE_MAT_HEIGHT (HEIGHT >> TILE_BITS)
 
 typedef struct {
-	u8 end;
-	u8 list[TILE_LIST_LEN];
+	u8 list_end;
+	u8 list[TILE_LIST_LEN]; // Indices to draw list.
 } TileList;
-extern short tile_mat[TILE_MAT_WIDTH][TILE_MAT_HEIGHT];
+typedef struct {
+	TileList mat[TILE_MAT_WIDTH][TILE_MAT_HEIGHT];
+} TileMat;
+extern TileMat* _tile_mat;
 
 ///////////////////////////////////////////////////////////////////////////////
 

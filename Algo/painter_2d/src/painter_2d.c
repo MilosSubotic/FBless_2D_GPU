@@ -8,12 +8,14 @@
 // Pointers to SW/HW data structures.
 
 DrawList* _draw_list = 0;
+TileMat* _tile_mat = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // SW data structures.
 
 #if SW_EN
 static DrawList _sw_draw_list;
+static TileMat _sw_tile_mat;
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,13 +27,15 @@ static int _renderer;
 
 void init_renderer(int renderer) {
 	_renderer = renderer;
-	if(renderer <= 1){
+	if(renderer <= 2){
 #if SW_EN
 		_draw_list = &_sw_draw_list;
+		_tile_mat = &_sw_tile_mat;
 #endif
 	}else{
 #if HW_EN
 		_draw_list = 0; //TODO From xparameters.h, don't use volatile.
+		_tile_mat = 0;
 #endif
 	}
 	_draw_list->list_end = 0;

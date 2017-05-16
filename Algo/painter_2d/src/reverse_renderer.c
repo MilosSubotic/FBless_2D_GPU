@@ -19,8 +19,8 @@ void reverse_renderer() {
 	
 	u8* vga = malloc(WIDTH*HEIGHT*3);
 
-	for(int y = 0; y < HEIGHT; y++){
-		for(int x = 0; x < WIDTH; x++){
+	for(u16 y = 0; y < HEIGHT; y++){
+		for(u16 x = 0; x < WIDTH; x++){
 			int idx = (y*WIDTH+x)*3;
 			u8 acc_r = 0;
 			u8 acc_g = 0;

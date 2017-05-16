@@ -18,8 +18,8 @@ void basic_renderer() {
 	
 	u8* vga = malloc(WIDTH*HEIGHT*3);
 
-	for(int y = 0; y < HEIGHT; y++){
-		for(int x = 0; x < WIDTH; x++){
+	for(u16 y = 0; y < HEIGHT; y++){
+		for(u16 x = 0; x < WIDTH; x++){
 			int idx = (y*WIDTH+x)*3;
 			Color c_acc = {0, 0, 0, 0};
 			for(int i = 0; i < _draw_list->list_end; i++){
