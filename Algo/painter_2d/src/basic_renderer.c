@@ -11,6 +11,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 void basic_renderer() {
+#if SW_EN
+
 #if FIX_POINT
 	const int shift = 13;
 	const u16 fix_one = 0x1 << shift; // 1b.13b
@@ -58,6 +60,8 @@ void basic_renderer() {
 	save_ppm("basic.ppm", vga, WIDTH, HEIGHT);
 
 	free(vga);
+	
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////
