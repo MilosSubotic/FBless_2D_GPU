@@ -27,7 +27,7 @@ static int _renderer;
 
 void init_renderer(int renderer) {
 	_renderer = renderer;
-	if(renderer <= 2){
+	if(renderer <= 3){
 #if SW_EN
 		_draw_list = &_sw_draw_list;
 		_tile_mat = &_sw_tile_mat;
@@ -92,6 +92,8 @@ void flush() {
 	}else if(_renderer == 2){
 		tile_renderer();
 	}else if(_renderer == 3){
+		parallel_tile_renderer();
+	}else if(_renderer == 4){
 		hw_tile_renderer();
 	}
 }

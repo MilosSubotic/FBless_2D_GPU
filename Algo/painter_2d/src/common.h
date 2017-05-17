@@ -55,6 +55,7 @@ extern DrawList* _draw_list;
 #define TILE_BITS 5
 #define TILE_LIST_LEN 7
 
+#define TILE_LINE (1<<TILE_BITS)
 #define TILE_MAT_WIDTH (WIDTH >> TILE_BITS)
 #define TILE_MAT_HEIGHT (HEIGHT >> TILE_BITS)
 
@@ -75,6 +76,7 @@ void tile_partitioning();
 void basic_renderer();
 void reverse_renderer();
 void tile_renderer();
+void parallel_tile_renderer();
 void hw_tile_renderer();
 
 ///////////////////////////////////////////////////////////////////////////////
