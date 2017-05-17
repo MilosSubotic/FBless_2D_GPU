@@ -91,6 +91,8 @@ void flush() {
 		reverse_renderer();
 	}else if(_renderer == 2){
 		tile_renderer();
+	}else if(_renderer == 3){
+		hw_tile_renderer();
 	}
 }
 
