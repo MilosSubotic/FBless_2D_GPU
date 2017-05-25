@@ -36,7 +36,7 @@ typedef struct {
 	u16 h;
 } Rect;
 
-#define DRAW_LIST_LEN 512
+#define DRAW_LIST_LEN 256
 typedef struct {
 	Rect rects[DRAW_LIST_LEN];
 	Color colors[DRAW_LIST_LEN];
